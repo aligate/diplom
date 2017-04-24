@@ -31,7 +31,6 @@
                 <tr>
                     <th>ID категории</th>
                     <th>Название категории</th>
-                    <th>Порядковый номер</th>
                     <th>Вопросы</th>
                     <th></th>
                     <th></th>
@@ -46,7 +45,7 @@
 								{%else%}
                         <td>{{category.requests}}</td>  
 							{%endif%}
-                        <td><a href="?/category/update/cat/{{category.category_id}}" title="Редактировать"><i class="fa fa-pencil-square-o"></i></a></td>
+                       
                         <td><a href="?/category/delete/cat/{{category.category_id}}" title="Удалить"><i class="fa fa-times"></i></a></td>
                     </tr>
 					{%endfor%}
