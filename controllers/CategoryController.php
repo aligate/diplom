@@ -35,9 +35,9 @@ public function postAdd($params, $post){
 	public function getDelete($params)
 	{
 		$session = $this->model->checkLogged();
-		if (isset($params['id']) && is_numeric($params['id'])) {
+		if (isset($params['cat']) && is_numeric($params['cat'])) {
 
-			$this->model->delCatAndRequest($params['id']);
+			$this->model->delCatAndRequest($params['cat']);
 		
 				header('Location: ?/category/list');
 			
