@@ -32,14 +32,13 @@
                     <th>ID категории</th>
                     <th>Название категории</th>
                     <th>Вопросы</th>
-                    <th></th>
-                    <th></th>
+                    <th>Удалить</th>
                 </tr>
                 {%for category in getAllCategories%}
                     <tr>
                         <td>{{category.category_id}}</td>
                         <td><a href="?/request/entry/cat/{{category.category_id}}">{{category.title}}</a></td>
-                        <td>{{category.sort_order}}</td>
+                       
 							{%if category.cat_id==NULL%}
 							<td>{{'0'}}</td>
 								{%else%}
