@@ -42,7 +42,9 @@
                             <div class="col-sm-6">
                                 <div class="social-icons pull-right">
                                     <ul class="nav navbar-nav">
+                                        {%if session%}
                                         <li><a href="?/admin/logout"><i class="fa fa-sign-out"></i>Выход</a></li>
+                                        {%endif%}
                                     </ul>
                                 </div>
                             </div>
