@@ -50,7 +50,7 @@
 							{%else%}
 						 <td>{{'Дан ответ'}}</td>
 							 {%endif%}
-							{%if item.is_published=='0'%}
+							{%if item.is_published=='1'%}
 							<td>{{'Опубликован'}}</td>
 								{%else%}
                         <td>{{'Скрыт'}}</td>  
