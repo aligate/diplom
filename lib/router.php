@@ -10,7 +10,7 @@ if(strpos($_SERVER['REQUEST_URI'], '?') === false)
 }
 else
 {
-	$pathList = explode('/', trim($_SERVER['argv'][0], '/'));
+	$pathList = explode('/', trim($_SERVER['QUERY_STRING'], '/'));
 	
 }
 	if (count($pathList) < 2)
