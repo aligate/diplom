@@ -23,10 +23,12 @@ public function createCategory($title){
 $stmt = $this->db->prepare("INSERT INTO category (title) VALUES (:title)");
 $stmt->execute(['title'=>$title]);
 }
-
+// Удаляем темы с вопросами и ответами
 public function delCatAndRequest($id){
 	
-	$stmt = $this->db->prepare("DELETE category, request, responce FROM category LEFT JOIN request ON request.cat_id=category.category_id LEFT JOIN responce ON responce.request_id= request.id WHERE category_id = :id");
+	$stmt = $this->db->prepare("DELETE category, request, responce FROM category 
+	LEFT JOIN request ON request.cat_id=category.category_id 
+	LEFT JOIN responce ON responce.request_id= request.id WHERE category_id = :id");
 	$stmt->execute(['id'=> $id]);
 	
 }
