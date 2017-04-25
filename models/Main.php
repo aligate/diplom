@@ -51,38 +51,5 @@ class Main extends Model
 	}
 	
 	
-	
-	// Авторизация
-	public function findAuth($log, $pass)
-	{
-		$stmt = $this->db->prepare("SELECT * FROM user WHERE login = :login AND password = :password");
-		
-		$stmt->execute(['login'=>$log, 'password'=>md5($pass)]);
-		
-		return $stmt->fetch(PDO::FETCH_ASSOC); 
-		
-		}
-	// Проверка на существование зарегистрированного логина	
-	public function checkLogin($login){
-		
-		$stmt = $this->db->prepare("SELECT * FROM user WHERE login = '{$login}'");
-		$stmt->execute();
-		if($stmt->rowCount() > 0){
-			return true;
-		}
-			return false;
-	}
-	// Регистрация
-	public function regist($login, $password){
-		
-	$stmt = $this->db->prepare("INSERT INTO user (login, password) VALUES (:login, :password)");
-	$stmt->execute(['login' =>$login, 'password' =>md5($password)]);
-	if($stmt->rowCount() === 1){
-		return true;
-	}
-	return false;
-	}
-
-	
 }
 
