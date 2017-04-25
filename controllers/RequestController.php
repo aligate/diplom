@@ -10,7 +10,7 @@ function __construct($db)
 		$this->model = new Request($db);
 		
 	}
-	
+//Вывод вопросов по одной категории	
 public function getEntry($params){
 	
 	$session = $this->model->checkLogged();
@@ -24,7 +24,7 @@ public function getEntry($params){
 	
 }
 
-
+//Добавление вопроса админом
 public function postAdd($params, $post){
 	$session = $this->model->checkLogged();
 	$text= $post['text'];
@@ -32,7 +32,7 @@ public function postAdd($params, $post){
 	$this->model->addRequest($text, $id);
 	header('Location: ?/request/entry/cat/'.$params['cat']);
 }
-
+//Удаление вопроса с ответом, если есть
 public function getDelete($params)
 	{
 		$session = $this->model->checkLogged();
@@ -44,7 +44,7 @@ public function getDelete($params)
 			
 		}
 	}
-
+//Вывод формы для редактирования
 public function getEdit($params){
 	
 	$session = $this->model->checkLogged();
@@ -58,7 +58,7 @@ public function getEdit($params){
 
 	echo $this->render('edit_entry.php', ['entryToEdit'=>$entryToEdit,'categories'=>$categories]);
 }
-
+//Редактирование вопроса
 public function postUpdate($params, $post){
 	$session = $this->model->checkLogged();
 	if(isset($post)){
@@ -71,7 +71,7 @@ public function postUpdate($params, $post){
 	
 	
 }
-
+// Вывод всех новых вопросов 
 public function getNew(){
 	
 	$newEntries = $this->model->showNewRequest();
