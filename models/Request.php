@@ -13,13 +13,6 @@ $stmt->bindParam('cat_id', $cat_id );
 $stmt->execute();
 }
 
-public function delCatAndRequest($id){
-	
-	$stmt = $this->db->prepare("DELETE category, request FROM category LEFT JOIN request ON request.cat_id=category.category_id WHERE category_id = :id");
-	$stmt->execute(['id'=>$id]);
-	
-}
-
 public function showOneCat($id){
 	
 	$stmt = $this->db->prepare("SELECT cat.category_id, cat.title, req.id, req.text, req.is_published, req.has_responce, req.dated
