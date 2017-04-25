@@ -9,30 +9,34 @@
             <div class="breadcrumbs">
                 <ol class="breadcrumb">
                     <li><a href="?/admin/list">Админпанель</a></li>
-                    <li class="active">Управление категориями</li>
+                    <li class="active">Управление темами</li>
                 </ol>
             </div>
 
            <div style="float: left">
     <form action= "?/category/add" method="POST">
-       Название рубрики: <input type="text" name="name" placeholder="Имя" value="" />
+       Название темы: <input type="text" name="name" placeholder="Имя" value="" />
         
-        <input type="submit" name="save" value="Добавить рубрику" />
+        <input type="submit" name="save" value="Добавить тему" />
     </form>
 </div>
        <br>     
        <br>
             
-            <h4>Список категорий</h4>
+            <h4>Список тем</h4>
 
             <br/>
 
             <table class="table-bordered table-striped table">
                 <tr>
-                    <th>ID категории</th>
-                    <th>Название категории</th>
+                    <th>ID темы</th>
+                    <th>Название темы</th>
+                  
                     <th>Вопросы</th>
-                    <th>Удалить</th>
+                    <th>Опубликовано</th>
+                    <th>Ожидают ответа</th>
+                   
+                    <th></th>
                 </tr>
                 {%for category in getAllCategories%}
                     <tr>
@@ -44,7 +48,8 @@
 								{%else%}
                         <td>{{category.requests}}</td>  
 							{%endif%}
-                       
+                        <td>{{category.is_published}}</td>
+                        <td>{{category.no_responce}}</td>
                         <td><a href="?/category/delete/cat/{{category.category_id}}" title="Удалить"><i class="fa fa-times"></i></a></td>
                     </tr>
 					{%endfor%}
