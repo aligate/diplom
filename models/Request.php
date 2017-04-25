@@ -7,7 +7,8 @@ class Request extends Model{
 
 public function addRequest($text, $cat_id){
 	
-$stmt = $this->db->prepare("INSERT INTO request (text, cat_id) VALUES (:text, :cat_id);INSERT INTO responce (request_id, text) VALUES (LAST_INSERT_ID(), '')");
+$stmt = $this->db->prepare("INSERT INTO request (text, cat_id) VALUES (:text, :cat_id);
+			    INSERT INTO responce (request_id, text) VALUES (LAST_INSERT_ID(), '')");
 $stmt->bindParam('text', $text);
 $stmt->bindParam('cat_id', $cat_id );
 $stmt->execute();
@@ -36,14 +37,16 @@ public function showOneRequest($category_id, $id){
 	req.user_email,
 	res.id AS res_id,
 	res.text AS res_text
-    FROM category cat LEFT JOIN request req ON cat.category_id = req.cat_id LEFT JOIN responce res ON res.request_id=req.id WHERE cat.category_id = :category_id AND req.id= :id");
+    FROM category cat LEFT JOIN request req ON cat.category_id = req.cat_id 
+    LEFT JOIN responce res ON res.request_id=req.id WHERE cat.category_id = :category_id AND req.id= :id");
 	$stmt->execute(['category_id'=>$category_id, 'id'=>$id]);
 	return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
 public function delRequest($id){
 	
-	$stmt = $this->db->prepare("DELETE request, responce FROM request LEFT JOIN responce ON responce.request_id= request.id WHERE request.id = :id");
+	$stmt = $this->db->prepare("DELETE request, responce FROM request LEFT JOIN responce ON responce.request_id= request.id 
+	WHERE request.id = :id");
 	$stmt ->execute(['id'=>$id]);
 }
 
