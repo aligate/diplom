@@ -4,7 +4,7 @@ require_once 'Model.php';
 class Request extends Model{
 
 
-
+//Создаем вместе с вопросом "пустой" ответ, как placeholder, чтобы потом совмещать INSERT с UPDATE
 public function addRequest($text, $cat_id){
 	
 $stmt = $this->db->prepare("INSERT INTO request (text, cat_id) VALUES (:text, :cat_id);
