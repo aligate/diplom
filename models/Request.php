@@ -77,10 +77,10 @@ public function entryUpdate($id, $params){
 	
 }
 
-public function showNewRequest($cat){
+public function showNewRequest(){
 	
-	$stmt = $this->db->prepare("SELECT *
-    FROM request WHERE has_responce=0 AND cat_id= {$cat} ORDER BY dated");
+	$stmt = $this->db->prepare("SELECT req.id, req.text, req.dated, req.has_responce, cat.category_id, cat.title
+    FROM request req JOIN category cat ON cat.category_id = req.cat_id WHERE req.has_responce='0' ORDER BY dated");
 	$stmt->execute();
 	return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
