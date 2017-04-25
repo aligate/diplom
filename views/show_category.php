@@ -12,7 +12,7 @@
                     <li class="active">Управление темами</li>
                 </ol>
             </div>
-
+<div style="float: right"><a href="?/request/new" class="btn btn-default back"><i class="fa fa-plus"></i> Все новые вопросы</a></div>
            <div style="float: left">
     <form action= "?/category/add" method="POST">
        Название темы: <input type="text" name="name" placeholder="Имя" value="" />
