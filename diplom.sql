@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Апр 24 2017 г., 22:01
+-- Время создания: Апр 25 2017 г., 13:35
 -- Версия сервера: 5.5.48
 -- Версия PHP: 5.4.45
 
@@ -48,7 +48,7 @@ INSERT INTO `admin` (`id`, `name`, `password`) VALUES
 CREATE TABLE IF NOT EXISTS `category` (
   `category_id` int(11) unsigned NOT NULL,
   `title` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `category`
@@ -57,8 +57,7 @@ CREATE TABLE IF NOT EXISTS `category` (
 INSERT INTO `category` (`category_id`, `title`) VALUES
 (1, 'Basics'),
 (2, 'Mobile'),
-(10, 'Payment'),
-(11, 'Account');
+(10, 'Payment');
 
 -- --------------------------------------------------------
 
@@ -75,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `request` (
   `dated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `author` varchar(50) DEFAULT 'admin',
   `user_email` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `request`
@@ -88,9 +87,7 @@ INSERT INTO `request` (`id`, `text`, `cat_id`, `has_responce`, `is_published`, `
 (4, 'Hallo', 1, '1', '0', '2017-04-23 16:17:33', 'ich', ''),
 (5, 'How do I upload files from my phone or tablet?', 2, '1', '1', '2017-04-23 15:17:43', 'admin', ''),
 (8, 'to be or not to be', 2, '1', '1', '2017-04-19 12:26:22', 'Саша', 'adrubinov@gmail.com'),
-(30, 'Сколько стоит вопрос?', 11, '0', '0', '2017-04-23 17:39:56', 'admin', NULL),
-(32, 'Super muper', 2, '0', '0', '2017-04-24 10:21:13', 'admin', NULL),
-(35, 'Сколько стоит почтовое отправление?', 11, '0', '0', '2017-04-24 13:37:24', 'Marina', 'wert@dr.ru');
+(36, 'когда придет лето?', 2, '0', '0', '2017-04-24 19:51:37', 'admin', NULL);
 
 -- --------------------------------------------------------
 
@@ -103,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `responce` (
   `request_id` int(11) NOT NULL,
   `text` text NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `responce`
@@ -117,8 +114,7 @@ INSERT INTO `responce` (`id`, `request_id`, `text`, `date`) VALUES
 (5, 5, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis provident officiis, reprehenderit numquam. Praesentium veritatis eos tenetur magni debitis inventore fugit, magnam, reiciendis, saepe obcaecati ex vero quaerat distinctio velit.', '2017-04-17 16:36:08'),
 (6, 6, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis provident officiis, reprehenderit numquam. Praesentium veritatis eos tenetur magni debitis inventore fugit, magnam, reiciendis, saepe obcaecati ex vero quaerat distinctio velit.', '2017-04-17 16:36:08'),
 (7, 8, 'yes, to be!', '2017-04-18 13:59:47'),
-(8, 32, 'never mind!', '2017-04-24 10:21:13'),
-(11, 35, '', '2017-04-24 13:37:25');
+(12, 36, '', '2017-04-24 19:51:37');
 
 --
 -- Индексы сохранённых таблиц
@@ -161,17 +157,17 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT для таблицы `category`
 --
 ALTER TABLE `category`
-  MODIFY `category_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+  MODIFY `category_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT для таблицы `request`
 --
 ALTER TABLE `request`
-  MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=36;
+  MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=39;
 --
 -- AUTO_INCREMENT для таблицы `responce`
 --
 ALTER TABLE `responce`
-  MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+  MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
