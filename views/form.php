@@ -35,7 +35,7 @@
     <input type="text" name="name" placeholder="Name" value="{{name}}" /><br />
     <input  type="email" name="email" placeholder="Email"  value="{{email}}"/><br />
 	<select name="cat">
-				<option  selected disabled>выберите рубрику</option>
+				<option  selected disabled>выберите тему</option>
 				{%for item in categories%}	
 					<option value="{{item.category_id}}">{{item.title}}</option>
 				{%endfor%}
