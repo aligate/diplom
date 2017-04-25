@@ -15,7 +15,7 @@
             </div>
 
 
-            <h4>Редактировать вопрос к рубрике: {{entryToEdit.title}}</h4>
+            <h4>Редактировать вопрос к теме: {{entryToEdit.title}}</h4>
 
             <br/>
 
@@ -26,7 +26,7 @@
                         <p>Текст вопроса</p>
                         <input type="text" name="text" placeholder="" value="{{entryToEdit.text}}">
 
-                       <p>Категория</p>
+                       <p>Тема</p>
                         <select name="cat_id">
                        
 					   {%for category in categories%}
