@@ -8,7 +8,9 @@ public function showCategoriesList(){
 	$stmt = $this->db->prepare("SELECT req.cat_id, 
 							cat.category_id,
 							cat.title,
-							count('req.id') AS requests
+							count(req.id) AS requests,
+                            				sum(is_published = '1') AS is_published,
+                            				sum(has_responce = '0') AS no_responce
 							FROM request AS req RIGHT JOIN category AS cat ON req.cat_id = cat.category_id 
 							GROUP BY category_id");
 	$stmt->execute();
