@@ -72,10 +72,13 @@ public function postUpdate($params, $post){
 	
 }
 
-
-
+public function getNew(){
 	
-	
+	$newEntries = $this->model->showNewRequest();
+
+	echo $this->render('new_entry.php', ['newEntries'=> $newEntries]);
+		
+}
 
 }
 
