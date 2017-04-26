@@ -9,13 +9,15 @@ class DataBase
 	 * @param $user пользователь
 	 * @param $pass пароль
 	 */
-	public static function connect($host, $dbname, $user, $pass)
-	{
-		try {
-			$db = new PDO('mysql:host='.$host.';dbname='.$dbname.';charset=utf8', $user, $pass);
-		} catch (PDOException $e) {
-			die('Database error: '.$e->getMessage().'<br/>');
+	public static $db;
+	 
+	public static function getDbConnection($host, $dbname, $user, $pass){
+		
+		if(!self::$db)
+		{
+			self::$db = new PDO ('mysql:host='.$host.';dbname='.$dbname.';charset=utf8', $user, $pass);
 		}
-		return $db;
+		
+		return self::$db;
 	}
 }
