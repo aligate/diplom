@@ -10,7 +10,7 @@ $config = include 'config.php';
  */
 include 'lib/DataBase.php';
 
-$db = DataBase::connect(
+$db = DataBase::getDbConnection(
 	$config['mysql']['host'],
 	$config['mysql']['dbname'],
 	$config['mysql']['user'],
