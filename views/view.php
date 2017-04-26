@@ -6,14 +6,14 @@
 	{%for key, value in data%}
 		
 	
-		<li><a href="#{{key|lower}}">{{key}}</a></li>
+		<li><a href="#{{key|lower[:3]}}">{{key}}</a></li>
 		
 	{%endfor%}
 	</ul> <!-- cd-faq-categories -->
 
 	<div class="cd-faq-items">
 	{%for key, value in data%}
-		<ul id="{{key|lower}}" class="cd-faq-group">
+		<ul id="{{key|lower[:3]}}" class="cd-faq-group">
 			<li class="cd-faq-title"><h2>{{key}}</h2></li>
 				{%for item in value%}
 			<li>
