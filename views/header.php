@@ -14,6 +14,7 @@
 	<title>FAQ</title>
 </head>
 <body>
+<div><p style="text-decoration: underline;"><a href="?/admin/login">В Админпанель</a></p></div>
 <header>
 	<h1>FAQ</h1>
 
