@@ -4,11 +4,11 @@ require_once 'Model.php';
 class Request extends Model{
 
 
-//Создаем вместе с вопросом "пустой" ответ, как placeholder, чтобы потом совмещать INSERT с UPDATE
+//Создаем вместе с вопросом "пустой" ответ(NULL), как placeholder, чтобы потом совмещать INSERT с UPDATE
 public function addRequest($text, $cat_id){
 	
 $stmt = $this->db->prepare("INSERT INTO request (text, cat_id) VALUES (:text, :cat_id);
-			    INSERT INTO responce (request_id, text) VALUES (LAST_INSERT_ID(), '')");
+			    INSERT INTO responce (request_id) VALUES (LAST_INSERT_ID())");
 $stmt->bindParam('text', $text);
 $stmt->bindParam('cat_id', $cat_id );
 $stmt->execute();
