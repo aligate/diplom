@@ -33,7 +33,7 @@ else
 	if (is_file($controllerFile)) {
 		include $controllerFile;
 		if (class_exists($controllerText)) {
-			$controller = new $controllerText($db);
+			$controller = new $controllerText();
 			
 			$action = ($_SERVER['REQUEST_METHOD'] == 'POST' ? 'post' : 'get').ucfirst($action);
 			if (method_exists($controller, $action)) {
