@@ -4,10 +4,10 @@ require_once 'CoreController.php';
 class CategoryController extends CoreController{
 
 
-function __construct($db)
+function __construct()
 	{
 		parent::__construct($db);
-		$this->model = new Category($db);
+		$this->model = new Category();
 		
 	}
 	
