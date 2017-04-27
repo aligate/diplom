@@ -4,10 +4,10 @@ require_once 'CoreController.php';
 class RequestController extends CoreController{
 
 
-function __construct($db)
+function __construct()
 	{
-		parent::__construct($db);
-		$this->model = new Request($db);
+		parent::__construct();
+		$this->model = new Request();
 		
 	}
 //Вывод вопросов по одной категории	
