@@ -1,173 +1,93 @@
--- phpMyAdmin SQL Dump
--- version 4.4.15.5
--- http://www.phpmyadmin.net
---
--- Хост: 127.0.0.1:3306
--- Время создания: Апр 25 2017 г., 13:35
--- Версия сервера: 5.5.48
--- Версия PHP: 5.4.45
+-- Adminer 4.3.0 MySQL dump
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
+SET NAMES utf8;
+SET time_zone = '+00:00';
+SET foreign_key_checks = 0;
+SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- База данных: `diplom`
---
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `admin`
---
-
-CREATE TABLE IF NOT EXISTS `admin` (
-  `id` int(11) unsigned NOT NULL,
+DROP TABLE IF EXISTS `admin`;
+CREATE TABLE `admin` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
-
---
--- Дамп данных таблицы `admin`
---
+  `password` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `admin` (`id`, `name`, `password`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3');
+(1,	'admin',	'21232f297a57a5a743894a0e4a801fc3'),
+(6,	'Alex',	'ec6a6536ca304edf844d1d248a4f08dc'),
+(7,	'Marina',	'827ccb0eea8a706c4c34a16891f84e7b');
 
--- --------------------------------------------------------
-
---
--- Структура таблицы `category`
---
-
-CREATE TABLE IF NOT EXISTS `category` (
-  `category_id` int(11) unsigned NOT NULL,
-  `title` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
-
---
--- Дамп данных таблицы `category`
---
+DROP TABLE IF EXISTS `category`;
+CREATE TABLE `category` (
+  `category_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
+  PRIMARY KEY (`category_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `category` (`category_id`, `title`) VALUES
-(1, 'Basics'),
-(2, 'Mobile'),
-(10, 'Payment');
+(16,	'Получение денег'),
+(17,	'Процесс идентификации'),
+(18,	'Регистрация'),
+(19,	'Защита прав потребителей'),
+(21,	'Отделения банка'),
+(24,	'Отправление денег онлайн');
 
--- --------------------------------------------------------
-
---
--- Структура таблицы `request`
---
-
-CREATE TABLE IF NOT EXISTS `request` (
-  `id` int(11) unsigned NOT NULL,
+DROP TABLE IF EXISTS `request`;
+CREATE TABLE `request` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `text` text NOT NULL,
   `cat_id` int(11) NOT NULL,
   `has_responce` enum('0','1') NOT NULL DEFAULT '0',
   `is_published` enum('0','1') NOT NULL DEFAULT '0',
   `dated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `author` varchar(50) DEFAULT 'admin',
-  `user_email` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
-
---
--- Дамп данных таблицы `request`
---
+  `user_email` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `request` (`id`, `text`, `cat_id`, `has_responce`, `is_published`, `dated`, `author`, `user_email`) VALUES
-(1, 'How do I change my password?', 10, '1', '1', '2017-04-23 16:52:49', 'admin', ''),
-(2, 'How do I sign up?', 1, '1', '1', '2017-04-23 15:18:16', 'admin', ''),
-(3, 'Can I remove a post?', 1, '1', '1', '2017-04-23 15:18:05', 'admin', ''),
-(4, 'Hallo', 1, '1', '0', '2017-04-23 16:17:33', 'ich', ''),
-(5, 'How do I upload files from my phone or tablet?', 2, '1', '1', '2017-04-23 15:17:43', 'admin', ''),
-(8, 'to be or not to be', 2, '1', '1', '2017-04-19 12:26:22', 'Саша', 'adrubinov@gmail.com'),
-(36, 'когда придет лето?', 2, '0', '0', '2017-04-24 19:51:37', 'admin', NULL);
+(40,	'Как я могу получить свои деньги?',	16,	'1',	'1',	'2017-04-25 15:40:10',	'admin',	NULL),
+(41,	'Как я могу узнать, можно ли получить денежный перевод?',	16,	'1',	'1',	'2017-04-25 15:40:21',	'admin',	NULL),
+(42,	'Сколько стоит получение денег?',	16,	'1',	'1',	'2017-04-25 15:40:29',	'admin',	NULL),
+(43,	'Нужно ли мне пройти идентификаицю?',	17,	'1',	'1',	'2017-04-25 15:37:52',	'admin',	NULL),
+(44,	'Каким образом мне нужно предoставить документ, удостоверяющий личность?',	17,	'1',	'1',	'2017-04-25 15:39:31',	'admin',	NULL),
+(45,	'Как я могу отменить свою регистрацию в системе?',	17,	'1',	'1',	'2017-04-25 19:10:03',	'admin',	NULL),
+(46,	'Почему мне нужно регистрироваться на сайте?',	18,	'1',	'1',	'2017-04-25 15:42:38',	'admin',	NULL),
+(47,	'Нужно ли платить за регистрацию на сайте ?',	18,	'1',	'1',	'2017-04-26 16:47:22',	'admin',	NULL),
+(48,	'На что мне дополнительно следует обращать внимание?',	19,	'1',	'1',	'2017-04-25 15:58:15',	'admin',	NULL),
+(49,	'Что мне нужно делать, если я заподозрю мошенничество или стану жертвой мошенничества?',	19,	'1',	'1',	'2017-04-27 10:43:53',	'admin',	NULL),
+(50,	'Как я могу отправить деньги онлайн?',	16,	'1',	'1',	'2017-04-26 16:39:17',	'admin',	NULL),
+(51,	'Сколько денег я могу отправить онлайн?',	21,	'1',	'1',	'2017-04-26 16:39:55',	'admin',	NULL),
+(52,	'Как мне узнать, подтвержден ли мой перевод онлайн?',	24,	'1',	'1',	'2017-04-26 16:52:13',	'Инна',	'asd3@yandex.ru'),
+(53,	'Как я могу произвести оплату?',	24,	'1',	'1',	'2017-04-26 16:52:37',	'admin',	NULL),
+(54,	'Сколько раз я могу зарегистрироваться?',	18,	'0',	'0',	'2017-04-27 10:45:37',	'admin',	NULL);
 
--- --------------------------------------------------------
-
---
--- Структура таблицы `responce`
---
-
-CREATE TABLE IF NOT EXISTS `responce` (
-  `id` int(11) unsigned NOT NULL,
+DROP TABLE IF EXISTS `responce`;
+CREATE TABLE `responce` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `request_id` int(11) NOT NULL,
-  `text` text NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
-
---
--- Дамп данных таблицы `responce`
---
+  `text` text,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `responce` (`id`, `request_id`, `text`, `date`) VALUES
-(1, 1, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae quidem blanditiis delectus corporis, possimus officia sint sequi ex tenetur id impedit est pariatur iure animi non a ratione reiciendis nihil sed consequatur atque repellendus fugit perspiciatis rerum et. Dolorum consequuntur fugit deleniti, soluta fuga nobis. Ducimus blanditiis velit sit iste delectus obcaecati debitis omnis, assumenda accusamus cumque perferendis eos aut quidem! Aut, totam rerum, cupiditate quae aperiam voluptas rem inventore quas, ex maxime culpa nam soluta labore at amet nihil laborum? Explicabo numquam, sit fugit, voluptatem autem atque quis quam voluptate fugiat earum rem hic, reprehenderit quaerat tempore at. Aperiam.', '2017-04-16 09:41:05'),
-(2, 2, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis provident officiis, reprehenderit numquam. Praesentium veritatis eos tenetur magni debitis inventore fugit, magnam, reiciendis, saepe obcaecati ex vero quaerat distinctio velit.', '2017-04-17 14:37:50'),
-(3, 3, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis provident officiis, reprehenderit numquam. Praesentium veritatis eos tenetur magni debitis inventore fugit, magnam, reiciendis, saepe obcaecati ex vero quaerat distinctio velit.', '2017-04-17 16:35:43'),
-(4, 4, 'sorry', '2017-04-23 16:17:33'),
-(5, 5, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis provident officiis, reprehenderit numquam. Praesentium veritatis eos tenetur magni debitis inventore fugit, magnam, reiciendis, saepe obcaecati ex vero quaerat distinctio velit.', '2017-04-17 16:36:08'),
-(6, 6, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis provident officiis, reprehenderit numquam. Praesentium veritatis eos tenetur magni debitis inventore fugit, magnam, reiciendis, saepe obcaecati ex vero quaerat distinctio velit.', '2017-04-17 16:36:08'),
-(7, 8, 'yes, to be!', '2017-04-18 13:59:47'),
-(12, 36, '', '2017-04-24 19:51:37');
+(6,	6,	'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis provident officiis, reprehenderit numquam. Praesentium veritatis eos tenetur magni debitis inventore fugit, magnam, reiciendis, saepe obcaecati ex vero quaerat distinctio velit.',	'2017-04-17 16:36:08'),
+(16,	40,	'Для получения перевода обратитесь в ближайшее отделение банка с документом, удостоверяющим личность, и контрольным номером денежного перевода (MTCN), который вам сообщит отправитель.',	'2017-04-25 15:32:13'),
+(17,	41,	'Просто следуйте по ссылке «Статус перевода» на домашней странице нашего сайта. Затем введите контрольный номер денежного перевода (MTCN). Мы предоставим Вам последнюю информацию о статусе Вашего денежного перевода.',	'2017-04-25 15:32:42'),
+(18,	42,	'Все комиссии оплачивает отправитель. Получение денег происходит бесплатно, если только получатель не предпочтет получить деньги в другой валюте либо на устройство или на счет, который не являлся частью операции отправления. Western Union может получать доход от конвертации иностранной валюты.',	'2017-04-25 15:33:24'),
+(19,	43,	'Для того чтобы отправить деньги онлайн, Вам необходимо создать профиль. Вас попросят указать свои имя и фамилию, адрес, электронную почту, номер мобильного телефона, номер паспорта и ИНН. Мы сверим предоставленные Вами данные с национальной базой данных и сообщим Вам, как только Ваша личность будет подтверждена.',	'2017-04-25 15:37:52'),
+(20,	44,	'Вас попросят указать данные своего удостоверения личности в форме регистрации в системе для отправления переводов онлайн. Как только регистрация будет произведена, сотрудник партнера, осуществляющего переводы  он-лайн, должен будет проверить достоверность указанной Вами информации по базе данных налоговых органов. После этого Вы сможете отправлять деньги онлайн, указав свой номер мобильного телефона и введя одноразовый пароль, отправленный на Ваш номер мобильного телефона.\r\n',	'2017-04-25 15:39:31'),
+(21,	45,	'Окей!',	'2017-04-25 19:10:03'),
+(22,	46,	'Регистрация требуется для большинства услуг. После Вашей регистрации отправление денежного перевода можно будет осуществить в течение нескольких минут, так как Ваша информация уже будет предварительно введена на странице. Это сэкономит Ваше время и избавит от необходимости всякий раз печатать ее тогда, когда Вы захотите осуществить операцию.',	'2017-04-25 15:42:38'),
+(23,	47,	'Вам понадобится действительное удостоверение личности с фотографией.',	'2017-04-26 16:43:32'),
+(24,	48,	'За безопасность отвечает каждый. Следите за информацией. Будьте в курсе новых тенденций мошенничества. Запомните: если что-то звучит неправдоподобно заманчиво, скорее всего, это неправда.',	'2017-04-25 15:58:15'),
+(25,	49,	'Если Вы получили электронное письмо от кого-то, кто называет себя представителем Western Union, а Вы в этом сомневаетесь, не нажимайте ни на какие ссылки в этом письме.',	'2017-04-27 10:43:53'),
+(26,	50,	'Вы можете отправлять деньги с дебетовой / кредитной карты   для выплаты в любом пункте партнера (c учетом времени работы пунктов и наличия валюты).',	'2017-04-25 16:26:52'),
+(27,	51,	'При отправлении денег онлайн действуют следующие ограничения:\r\n\r\nлимит единовременного перечисления составляет не менее 100,00 и не более 100.000,00 рублей;\r\nколичество операций в неделю не должно превышать 5;\r\nсумма переводов в месяц не может быть более 600.000,00 рублей;\r\nколичество операций в месяц не должно превышать 7.',	'2017-04-25 16:00:18'),
+(28,	52,	'Об ограничениях по суммам переводов, действующих в Российской Федерации вы можете узнать в Условиях оказания Услуги.',	'2017-04-26 16:45:02'),
+(29,	53,	'После отправления денежного перевода, выполните следующие простые действия:\r\n\r\nнажмите на кнопку «Статус переводa» в верхней части любой страницы сайта;\r\nвведите имя и фамилию отправителя, а также контрольный номер денежного перевода (MTCN);\r\nукажите свой номер мобильного телефона, чтобы получить SMS-уведомление о выплате отправленного денежного перевода получателю.',	'2017-04-26 16:46:23'),
+(30,	54,	NULL,	'2017-04-27 10:45:37');
 
---
--- Индексы сохранённых таблиц
---
-
---
--- Индексы таблицы `admin`
---
-ALTER TABLE `admin`
-  ADD PRIMARY KEY (`id`);
-
---
--- Индексы таблицы `category`
---
-ALTER TABLE `category`
-  ADD PRIMARY KEY (`category_id`);
-
---
--- Индексы таблицы `request`
---
-ALTER TABLE `request`
-  ADD PRIMARY KEY (`id`);
-
---
--- Индексы таблицы `responce`
---
-ALTER TABLE `responce`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT для сохранённых таблиц
---
-
---
--- AUTO_INCREMENT для таблицы `admin`
---
-ALTER TABLE `admin`
-  MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT для таблицы `category`
---
-ALTER TABLE `category`
-  MODIFY `category_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
---
--- AUTO_INCREMENT для таблицы `request`
---
-ALTER TABLE `request`
-  MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=39;
---
--- AUTO_INCREMENT для таблицы `responce`
---
-ALTER TABLE `responce`
-  MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+-- 2017-04-27 10:47:13
