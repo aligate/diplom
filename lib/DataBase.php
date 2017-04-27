@@ -4,20 +4,26 @@ class DataBase
 {
 	/**
 	 * Подключение к базе данных mysql
-	 * @param $host адрес
-	 * @param $dbname название базы
-	 * @param $user пользователь
-	 * @param $pass пароль
 	 */
-	public static $db;
+	 public static $db;
 	 
-	public static function getDbConnection($host, $dbname, $user, $pass){
+	public static function getDbConnection(){
 		
-		if(!self::$db)
-		{
-			self::$db = new PDO ('mysql:host='.$host.';dbname='.$dbname.';charset=utf8', $user, $pass);
+		$config = include '/../config.php';
+		$options = [
+
+			PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+			PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+
+		];
+		
+		if(!self::$db){
+			self::$db = new PDO($config['dsn'], $config['user'], $config['pass'], $options);
 		}
 		
 		return self::$db;
+		
 	}
+	 
+	
 }
