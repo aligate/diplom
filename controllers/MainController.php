@@ -5,10 +5,10 @@ require_once 'CoreController.php';
 class MainController extends CoreController
 {
 	
-	function __construct($db)
+	function __construct()
 	{
-		parent::__construct($db);
-		$this->model = new Main($db);
+		parent::__construct();
+		$this->model = new Main();
 		
 	}
 	
