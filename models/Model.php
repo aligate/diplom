@@ -5,9 +5,10 @@ class Model{
 
 protected $db = null;
 
-	function __construct($db)
+	function __construct()
 	{
-		$this->db = $db;
+		include '/../lib/DataBase.php';
+		$this->db = DataBase::getDbConnection();
 	}
 	
 //Получение всех категорий
