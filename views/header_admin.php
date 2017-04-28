@@ -40,11 +40,17 @@
                                 </div>
                             </div>
                             <div class="col-sm-6">
+							
                                 <div class="social-icons pull-right">
+								<ul class="nav navbar-nav">
+									
+                                        <li><a href="?/main/list"><i class="fa fa-home"></i>На Главную</a></li>
+									
+                                    </ul>
                                     <ul class="nav navbar-nav">
-                                        {%if session%}
+									{%if session%}
                                         <li><a href="?/admin/logout"><i class="fa fa-sign-out"></i>Выход</a></li>
-                                        {%endif%}
+										{%endif%}
                                     </ul>
                                 </div>
                             </div>
