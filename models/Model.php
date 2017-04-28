@@ -1,5 +1,6 @@
 <?php
-
+namespace models;
+use lib\DataBase;
 
 class Model{
 
@@ -7,7 +8,6 @@ protected $db = null;
 
 	function __construct()
 	{
-		include '/../lib/DataBase.php';
 		$this->db = DataBase::getDbConnection();
 	}
 	
@@ -16,7 +16,7 @@ protected $db = null;
 	{
 		$sth = $this->db->prepare("SELECT * FROM category ORDER BY category_id");
 		if ($sth->execute()) {
-			return $sth->fetchAll(PDO::FETCH_ASSOC);
+			return $sth->fetchAll();
 		}
 		return false;
 	}
