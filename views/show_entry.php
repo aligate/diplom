@@ -9,9 +9,10 @@
             <div class="breadcrumbs">
                 <ol class="breadcrumb">
                     <li><a href="?/category/list">Админпанель</a></li>
-                    <li class="active">Управление категориями</li>
+                    <li class="active">Управление вопросами</li>
                 </ol>
             </div>
+			<div style="float: right"><a href="?/request/new" class="btn btn-default back"><i class="fa fa-plus"></i> Все новые вопросы</a></div>
 
            <div style="float: left">
     <form action= "?/request/add/cat/{{entry.0.category_id}}" method="POST">
@@ -23,7 +24,7 @@
        <br>     
        <br>
             
-            <h4>Рубрика: {{entry.0.title}}</h4>
+            <h4>Тема: {{entry.0.title}}</h4>
 
             <br/>
 
@@ -32,19 +33,21 @@
                     
                     <th>Текст вопроса</th>
                     <th>Дата</th>
+                    <th>Автор</th>
                     <th>Статус</th>
-					<th>Публикация</th>
+		  <th>Публикация</th>
                     <th>Редактировать</th>
                     <th>Удалить</th>
                 </tr>
                 {%for item in entry%}
 					{%if item.text==NULL%}
-					<p style="color: red">{{'В этой рубрике пока нет вопросов'}}</p>
+					<p style="color: red">{{'В этой теме пока нет вопросов'}}</p>
 						{%else%}
                     <tr>
                        
                         <td>{{item.text}}</td>
 						 <td>{{item.dated}}</td>
+						 <td>{{item.author}}</td>
 							 {%if item.has_responce=='0'%}
                         <td><p style="color: red">{{'Ожидает ответа'}}</td>
 							{%else%}
