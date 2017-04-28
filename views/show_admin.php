@@ -16,8 +16,8 @@
             
 			<div style="float: left">
     <form action= "?/admin/add" method="POST">
-       Введите имя: <input type="text" name="name" placeholder="Имя" value="" />
-        Создайте пароль:<input type="password" name="password" placeholder="Пароль" value="" />
+       Введите имя:  <input type="text" name="name" placeholder="Имя" value="" />
+        Создайте пароль:  <input type="password" name="password" placeholder="Пароль" value="" />
         <input type="submit" name="save" value="Добавить админа" />
     </form>
 </div>
@@ -33,17 +33,22 @@
                     <th>Имя</th>
                     <th>Пароль</th>
                     
-                    <th></th>
-                    <th></th>
+                    <th>Редактировать</th>
+                    <th>Удалить</th>
                 </tr>
                 {%for item in adminList%}
                     <tr>
                         <td>{{item.id}}</td>
                         <td>{{item.name}}</td>
                         <td>{{item.password}}</td>
-                       
+                       {%if item.name=='admin'%}
+                        <td><p style="color:red"><i class="glyphicon glyphicon-minus-sign"></i></p></td>
+			<td><p style="color:red"><i class="glyphicon glyphicon-minus-sign"></i></p></td>
+						{%else%}
                         <td><a href="?/admin/update/id/{{item.id}}" title="Редактировать"><i class="fa fa-pencil-square-o"></i></a></td>
-                        <td><a href="?/admin/delete/id/{{item.id}}" title="Удалить"><i class="fa fa-times"></i></a></td>
+						 <td><a href="?/admin/delete/id/{{item.id}}" title="Удалить"><i class="fa fa-times"></i></a></td>
+							{%endif%}
+							
                     </tr>
 					{%endfor%}
             </table>
