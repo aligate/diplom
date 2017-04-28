@@ -1,4 +1,5 @@
 <?php
+namespace lib;
 
 class DataBase
 {
@@ -10,15 +11,13 @@ class DataBase
 	public static function getDbConnection(){
 		
 		$config = include '/../config.php';
-		$options = [
-
-			PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-			PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-
-		];
+		
 		
 		if(!self::$db){
-			self::$db = new PDO($config['dsn'], $config['user'], $config['pass'], $options);
+			self::$db = new \PDO($config['dsn'], $config['user'], $config['pass'], 
+					     	[\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
+						\PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC]);
+			
 		}
 		
 		return self::$db;
