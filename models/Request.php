@@ -1,25 +1,25 @@
 <?php
-require_once 'Model.php';
+namespace models;
 
 class Request extends Model{
-
-
-//Создаем вместе с вопросом "пустой" ответ(NULL), как placeholder, чтобы потом совмещать INSERT с UPDATE
+	
+//Вместе с вопросом автоматом создаем "пустой" ответ (null), чтобы потом совмещать update и insert
 public function addRequest($text, $cat_id){
 	
 $stmt = $this->db->prepare("INSERT INTO request (text, cat_id) VALUES (:text, :cat_id);
-			    INSERT INTO responce (request_id) VALUES (LAST_INSERT_ID())");
+				INSERT INTO responce (request_id) VALUES (LAST_INSERT_ID())");
 $stmt->bindParam('text', $text);
 $stmt->bindParam('cat_id', $cat_id );
 $stmt->execute();
 }
+
 
 public function showOneCat($id){
 	
 	$stmt = $this->db->prepare("SELECT cat.category_id, cat.title, req.id, req.text, req.is_published, req.has_responce, req.dated
     FROM request req RIGHT JOIN category cat ON cat.category_id = req.cat_id WHERE cat.category_id ={$id}");
 	$stmt->execute();
-	return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $stmt->fetchAll();
 
 }
 
@@ -38,14 +38,16 @@ public function showOneRequest($category_id, $id){
 	res.id AS res_id,
 	res.text AS res_text
     FROM category cat LEFT JOIN request req ON cat.category_id = req.cat_id 
-    LEFT JOIN responce res ON res.request_id=req.id WHERE cat.category_id = :category_id AND req.id= :id");
+    LEFT JOIN responce res ON res.request_id=req.id 
+    WHERE cat.category_id = :category_id AND req.id= :id");
 	$stmt->execute(['category_id'=>$category_id, 'id'=>$id]);
-	return $stmt->fetch(PDO::FETCH_ASSOC);
+	return $stmt->fetch();
 }
 
 public function delRequest($id){
 	
-	$stmt = $this->db->prepare("DELETE request, responce FROM request LEFT JOIN responce ON responce.request_id= request.id 
+	$stmt = $this->db->prepare("DELETE request, responce FROM request 
+	LEFT JOIN responce ON responce.request_id= request.id 
 	WHERE request.id = :id");
 	$stmt ->execute(['id'=>$id]);
 }
@@ -78,7 +80,7 @@ public function showNewRequest(){
 	$stmt = $this->db->prepare("SELECT req.id, req.text, req.dated, req.has_responce, cat.category_id, cat.title
     FROM request req JOIN category cat ON cat.category_id = req.cat_id WHERE req.has_responce='0' ORDER BY dated");
 	$stmt->execute();
-	return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $stmt->fetchAll();
 
 }
 
