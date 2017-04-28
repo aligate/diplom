@@ -17,7 +17,8 @@ class Main extends Model
 							req.id,
 							req.text AS req_text,
 							res.text AS res_text
-	FROM category AS cat JOIN request AS req ON req.cat_id = cat.category_id JOIN responce AS res ON res.request_id = req.id WHERE req.is_published='1' ORDER BY cat.category_id");
+	FROM category AS cat JOIN request AS req ON req.cat_id = cat.category_id JOIN responce AS res ON res.request_id = req.id 
+	WHERE req.is_published='1' ORDER BY cat.category_id");
 		
 		if ($sth->execute()) {
 			$data =  $sth->fetchAll();
@@ -38,7 +39,9 @@ class Main extends Model
 	
 	function add($params)
 	{
-		$stmt = $this->db ->prepare("INSERT INTO request (text, cat_id, author, user_email) VALUES (:text, :cat_id, :author, :user_email);INSERT INTO responce (request_id, text) VALUES (LAST_INSERT_ID(), '')");
+		$stmt = $this->db ->prepare("INSERT INTO request (text, cat_id, author, user_email) 
+		VALUES (:text, :cat_id, :author, :user_email);
+		INSERT INTO responce (request_id) VALUES (LAST_INSERT_ID())");
 		$stmt->bindParam('text', trim(addslashes($params['text'])), \PDO::PARAM_STR);
 		$stmt->bindParam('cat_id', $params['category'], \PDO::PARAM_STR);
 		$stmt->bindParam('author', trim(addslashes($params['name'])), \PDO::PARAM_STR);
