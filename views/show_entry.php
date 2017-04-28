@@ -27,7 +27,9 @@
             <h4>Тема: {{entry.0.title}}</h4>
 
             <br/>
-
+	{%if item.text==NULL%}
+		<p style="color: red">{{'В этой теме пока нет вопросов'}}</p>
+		{%else%}
             <table class="table-bordered table-striped table">
                 <tr>
                     
@@ -40,9 +42,7 @@
                     <th>Удалить</th>
                 </tr>
                 {%for item in entry%}
-					{%if item.text==NULL%}
-					<p style="color: red">{{'В этой теме пока нет вопросов'}}</p>
-						{%else%}
+					
                     <tr>
                        
                         <td>{{item.text}}</td>
@@ -61,10 +61,10 @@
                         <td><a href="?/request/edit/cat/{{item.category_id}}/id/{{item.id}}" title="Редактировать"><i class="fa fa-pencil-square-o"></i></a></td>
                         <td><a href="?/request/delete/cat/{{item.category_id}}/id/{{item.id}}" title="Удалить"><i class="fa fa-times"></i></a></td>
                     </tr>
-					{%endif%}
+					
 					{%endfor%}
             </table>
-            
+            {%endif%}
         </div>
     </div>
 </section>
