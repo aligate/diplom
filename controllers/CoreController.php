@@ -1,15 +1,11 @@
 <?php
+namespace controllers;
+
 
 class CoreController{
 
 protected $model = null;
 
-
-	function __construct($db)
-	{
-		include 'Autoload.php';
-		
-	}
 
 	/**
 	 * Подключаем шаблонизатор Твиг
@@ -22,15 +18,12 @@ protected $model = null;
 	{
 		
 		require_once '/../vendor/autoload.php';
-		$loader = new Twig_Loader_Filesystem('views');
-		$twig = new Twig_Environment($loader);
+		$loader = new \Twig_Loader_Filesystem('views');
+		$twig = new \Twig_Environment($loader);
 		$templ = $twig->loadTemplate($template);
 		return $templ->render($params);
 	}
 	
-
-
-
 
 }
 
