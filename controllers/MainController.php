@@ -1,13 +1,14 @@
 <?php
 
-require_once 'CoreController.php';
+namespace controllers;
+use models\Main;
 
 class MainController extends CoreController
 {
 	
 	function __construct()
 	{
-		parent::__construct();
+		
 		$this->model = new Main();
 		
 	}
@@ -21,7 +22,6 @@ class MainController extends CoreController
 	{
 			
 		$data = $this->model->findAll();
-	
 		echo $this->render('view.php', ['data' =>$data]);
 		
 	}
@@ -68,11 +68,8 @@ class MainController extends CoreController
 	
 	if(empty($message))
 	{
-	
 	if($this->model->add(['text'=>$text, 'category' => $category, 'name' => $name, 'email' => $email]))
 		{
-		
-		
 		$message['success'][] = "Вaш вопрос получен!";
 		}
 	}
@@ -81,13 +78,6 @@ class MainController extends CoreController
 	
 	
 }
-
-	
-	
-	
-	
-	
-	
 
 }
 
