@@ -27,7 +27,7 @@
             <h4>Тема: {{entry.0.title}}</h4>
 
             <br/>
-	{%if item.text==NULL%}
+	{%if entry == NULL%}
 		<p style="color: red">{{'В этой теме пока нет вопросов'}}</p>
 		{%else%}
             <table class="table-bordered table-striped table">
