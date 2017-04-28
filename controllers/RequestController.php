@@ -1,16 +1,17 @@
 <?php
-require_once 'CoreController.php';
+namespace controllers;
+use models\Request;
 
 class RequestController extends CoreController{
 
 
 function __construct()
 	{
-		parent::__construct();
+		
 		$this->model = new Request();
 		
 	}
-//Вывод вопросов по одной категории	
+	
 public function getEntry($params){
 	
 	$session = $this->model->checkLogged();
@@ -24,7 +25,7 @@ public function getEntry($params){
 	
 }
 
-//Добавление вопроса админом
+
 public function postAdd($params, $post){
 	$session = $this->model->checkLogged();
 	$text= $post['text'];
@@ -32,7 +33,7 @@ public function postAdd($params, $post){
 	$this->model->addRequest($text, $id);
 	header('Location: ?/request/entry/cat/'.$params['cat']);
 }
-//Удаление вопроса с ответом, если есть
+// Удаление вопросма вместе с ответом, если есть
 public function getDelete($params)
 	{
 		$session = $this->model->checkLogged();
@@ -44,7 +45,7 @@ public function getDelete($params)
 			
 		}
 	}
-//Вывод формы для редактирования
+// Вывод формы для редактирования
 public function getEdit($params){
 	
 	$session = $this->model->checkLogged();
@@ -58,7 +59,7 @@ public function getEdit($params){
 
 	echo $this->render('edit_entry.php', ['entryToEdit'=>$entryToEdit,'categories'=>$categories]);
 }
-//Редактирование вопроса
+//Редактирование / Добавление ответа
 public function postUpdate($params, $post){
 	$session = $this->model->checkLogged();
 	if(isset($post)){
@@ -71,7 +72,7 @@ public function postUpdate($params, $post){
 	
 	
 }
-// Вывод всех новых вопросов 
+// Показ всех новых вопросов
 public function getNew(){
 	
 	$newEntries = $this->model->showNewRequest();
