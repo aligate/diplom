@@ -1,18 +1,23 @@
 <?php
 
+namespace lib;
 /**
  * Пример урла: /?/{controller}/{action}/{param1}/{value1}/{param2}/{value2}/
  * /?/book/update/id/1/
  */
-if(strpos($_SERVER['REQUEST_URI'], '?') === false)
-{
+ class Router{
+	 
+	public static function run(){
+		
+	if(strpos($_SERVER['REQUEST_URI'], '?') === false)
+	{
 	$pathList = ['main', 'list'];
-}
-else
-{
-	$pathList = explode('/', trim($_SERVER['QUERY_STRING'], '/'));
+	}
+	else
+	{
+	$pathList = explode('/', trim($_SERVER['argv'][0], '/'));
 	
-}
+	}
 	if (count($pathList) < 2)
 	{
 	$pathList = ['main', 'list'];
@@ -28,10 +33,8 @@ else
 		}
 	}
 	$controllerText = $controller . 'Controller';
-	$controllerFile = 'controllers/' . ucfirst($controllerText) . '.php';
+	$controllerText = 'controllers\\' . ucfirst($controllerText);
 	
-	if (is_file($controllerFile)) {
-		include $controllerFile;
 		if (class_exists($controllerText)) {
 			$controller = new $controllerText();
 			
@@ -41,4 +44,6 @@ else
 			}
 			
 		}
+	
 	}
+ }
