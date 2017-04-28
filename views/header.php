@@ -14,7 +14,12 @@
 	<title>FAQ</title>
 </head>
 <body>
-<div><p style="text-decoration: underline;"><a href="?/admin/login">В Админпанель</a></p></div>
+ <div class="social-icons pull-right" style="float:left">
+<ul class="nav navbar-nav">
+<li><a href="?/admin/login"><i class="fa fa-angle-double-right"></i>В Админпанель</a></li>
+ </ul>
+ </div>
+<br>
 <header>
 	<h1>FAQ</h1>
 
