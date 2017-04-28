@@ -1,14 +1,14 @@
 <?php
-require_once 'CoreController.php';
+
+namespace controllers;
+use models\Category;
 
 class CategoryController extends CoreController{
 
 
 function __construct()
 	{
-		parent::__construct($db);
 		$this->model = new Category();
-		
 	}
 	
 public function getList(){
@@ -20,7 +20,6 @@ public function getList(){
 	echo $this->render('show_category.php', ['getAllCategories' => $getAllCategories]);
 	
 }
-
 
 public function postAdd($params, $post){
 	$session = $this->model->checkLogged();
@@ -45,7 +44,6 @@ public function postAdd($params, $post){
 	}
 	
 	
-
 }
 
 
