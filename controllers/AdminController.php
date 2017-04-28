@@ -8,9 +8,7 @@ class AdminController extends CoreController{
 
 function __construct()
 	{
-		
 		$this->model = new Admin();
-		
 	}
 	
 	
@@ -21,9 +19,7 @@ public function getLogin(){
 	}
 	
 	echo $this->render('login.php');
-	
-	
-}
+	}
 
 public function postLogin($params, $post){
 		
@@ -66,7 +62,6 @@ public function postLogin($params, $post){
 public function getList(){
 	
 	$session = $this->model->checkLogged();
-	
 	echo $this->render('admin.php',['session' =>$session]);
 	
 }
@@ -118,7 +113,6 @@ public function postAdd($params, $post){
 			if (isset($post['password'])) {
 				$update = $post['password'];
 			}
-			
 			
 			$this->model->updateAdminPass($params['id'], $update);
 			header('Location: ?/admin/user');
