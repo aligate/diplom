@@ -1,12 +1,14 @@
 <?php
-require_once 'CoreController.php';
+
+namespace controllers;
+use models\Admin;
 
 class AdminController extends CoreController{
 
 
 function __construct()
 	{
-		parent::__construct();
+		
 		$this->model = new Admin();
 		
 	}
@@ -14,7 +16,9 @@ function __construct()
 	
 public function getLogin(){
 	
-	
+	if($_SESSION['users']){
+		header('Location: ?/admin/list');
+	}
 	
 	echo $this->render('login.php');
 	
