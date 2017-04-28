@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Model.php';
+namespace models;
 
 class Admin extends Model{
 	
@@ -16,7 +16,7 @@ class Admin extends Model{
 		
 		$stmt = $this->db->prepare("SELECT * FROM admin");
 		$stmt->execute();
-		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		return $stmt->fetchAll();
 		
 	}
 	
@@ -24,7 +24,7 @@ class Admin extends Model{
 		
 		$stmt = $this->db->prepare("SELECT * FROM admin WHERE id = :id");
 		$stmt->execute(['id' =>$id]);
-		return $stmt->fetch(PDO::FETCH_ASSOC);
+		return $stmt->fetch();
 	}
 	
 	public function updateAdminPass($id, $password){
@@ -47,7 +47,7 @@ class Admin extends Model{
 		
 		$stmt->execute(['name'=>$log, 'password'=>md5($pass)]);
 		
-		return $stmt->fetch(PDO::FETCH_ASSOC); 
+		return $stmt->fetch(); 
 		
 		}
 		
